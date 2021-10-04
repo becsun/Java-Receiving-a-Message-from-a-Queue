@@ -13,11 +13,16 @@ public class Main {
                 ActiveMQConnectionFactory connFact = new ActiveMQConnectionFactory("tcp://localhost:61616");
                 connFact.setConnectResponseTimeout(10000);
                 Connection conn = connFact.createConnection("user", "password");
-                conn.setClientID("PointToPointOneWayTraditional");
+                conn.setClientID(args[0]);
                 conn.start();
 
-                new Thread(new Receiver(conn.createSession(false, Session.CLIENT_ACKNOWLEDGE), "Queue.PointToPoint.OneWay.Traditional")).start();
-                new Thread(new Sender(conn.createSession(false, Session.CLIENT_ACKNOWLEDGE), "Queue.PointToPoint.OneWay.Traditional")).start();
+                new Thread(new Receiver(conn.createSession(false, Session.CLIENT_ACKNOWLEDGE), "Audit")).start();
+                new Thread(new Sender(conn.createSession(false, Session.CLIENT_ACKNOWLEDGE), "Audit")).start();
+
+
+
+
+
             }
 
 

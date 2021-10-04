@@ -7,8 +7,9 @@ public class Sender implements Runnable {
 
     private Session session;
     private String destination;
+    private String id;
 
-    public Sender(Session session, String destination) {
+    public Sender(Session session, String destination ) {
         this.session = session;
         this.destination = destination;
     }
