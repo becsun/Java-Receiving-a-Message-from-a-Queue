@@ -7,7 +7,7 @@ public class Sender implements Runnable {
 
     private Session session;
     private String destination;
-    private String id;
+
 
     public Sender(Session session, String destination ) {
         this.session = session;
@@ -19,7 +19,7 @@ public class Sender implements Runnable {
             MessageProducer messageProducer = session.createProducer(session.createQueue(destination));
             long counter = 0;
 
-            while (counter < 10) {
+            while (counter < 1) {
                 TextMessage message = session.createTextMessage("Message " + ++counter);
                 message.setJMSMessageID(UUID.randomUUID().toString());
                 messageProducer.send(message);

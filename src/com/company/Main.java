@@ -16,7 +16,10 @@ public class Main {
                 conn.setClientID(args[0]);
                 conn.start();
 
-                new Thread(new Receiver(conn.createSession(false, Session.CLIENT_ACKNOWLEDGE), "Audit")).start();
+
+
+                new Thread(new Receiver(conn.createSession(true,
+                        Session.SESSION_TRANSACTED), "Audit")).start();
                 new Thread(new Sender(conn.createSession(false, Session.CLIENT_ACKNOWLEDGE), "Audit")).start();
 
 
